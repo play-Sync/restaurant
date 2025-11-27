@@ -1,0 +1,513 @@
+/* src/app/globals.css */
+
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap");
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Custom fonts */
+  --font-serif: var(--font-serif);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+}
+
+/* ============================================
+   LIGHT THEME - Refined Luxury
+   Warm ivory/cream base with rich burgundy-gold accents
+   ============================================ */
+:root {
+  --radius: 0.5rem;
+
+  /* 
+   * Light theme palette:
+   * - Warm ivory/cream backgrounds (not stark white)
+   * - Deep charcoal text for readability
+   * - Rich burgundy-bronze primary for luxury feel
+   * - Subtle warm undertones throughout
+   */
+
+  /* Main backgrounds - warm ivory tones */
+  --background: oklch(0.985 0.006 85);
+  --foreground: oklch(0.2 0.02 285);
+
+  /* Card - slightly warmer, subtle depth */
+  --card: oklch(0.98 0.008 80);
+  --card-foreground: oklch(0.2 0.02 285);
+
+  /* Popover */
+  --popover: oklch(0.99 0.005 85);
+  --popover-foreground: oklch(0.2 0.02 285);
+
+  /* Primary - Rich burgundy-bronze gold */
+  --primary: oklch(0.45 0.12 45);
+  --primary-foreground: oklch(0.98 0.006 85);
+
+  /* Secondary - Warm taupe */
+  --secondary: oklch(0.94 0.012 75);
+  --secondary-foreground: oklch(0.25 0.02 285);
+
+  /* Muted - Soft warm gray */
+  --muted: oklch(0.96 0.008 80);
+  --muted-foreground: oklch(0.45 0.015 285);
+
+  /* Accent - Same as primary for consistency */
+  --accent: oklch(0.45 0.12 45);
+  --accent-foreground: oklch(0.98 0.006 85);
+
+  /* Destructive */
+  --destructive: oklch(0.5 0.18 25);
+
+  /* Border - Subtle warm border */
+  --border: oklch(0.9 0.012 75);
+
+  /* Input */
+  --input: oklch(0.96 0.008 80);
+
+  /* Ring - Focus ring */
+  --ring: oklch(0.45 0.12 45);
+
+  /* Fonts */
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+/* ============================================
+   DARK THEME - Luxury Dark Mode
+   Deep charcoal with warm gold accents
+   ============================================ */
+.dark {
+  /* 
+   * Dark theme palette:
+   * - Deep charcoal backgrounds with subtle warmth
+   * - Cream/ivory text
+   * - Warm gold primary for luxury feel
+   * - Rich depth and contrast
+   */
+
+  /* Main backgrounds - deep warm charcoal */
+  --background: oklch(0.14 0.012 280);
+  --foreground: oklch(0.93 0.008 85);
+
+  /* Card - slightly lighter for depth */
+  --card: oklch(0.17 0.012 280);
+  --card-foreground: oklch(0.93 0.008 85);
+
+  /* Popover */
+  --popover: oklch(0.15 0.012 280);
+  --popover-foreground: oklch(0.93 0.008 85);
+
+  /* Primary - Warm gold */
+  --primary: oklch(0.75 0.11 75);
+  --primary-foreground: oklch(0.14 0.012 280);
+
+  /* Secondary */
+  --secondary: oklch(0.2 0.012 280);
+  --secondary-foreground: oklch(0.88 0.012 85);
+
+  /* Muted */
+  --muted: oklch(0.23 0.012 280);
+  --muted-foreground: oklch(0.6 0.015 85);
+
+  /* Accent */
+  --accent: oklch(0.75 0.11 75);
+  --accent-foreground: oklch(0.14 0.012 280);
+
+  /* Destructive */
+  --destructive: oklch(0.58 0.2 25);
+
+  /* Border */
+  --border: oklch(0.28 0.012 280);
+
+  /* Input */
+  --input: oklch(0.23 0.012 280);
+
+  /* Ring */
+  --ring: oklch(0.75 0.11 75);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+  }
+
+  /* Selection highlight */
+  ::selection {
+    background: oklch(from var(--primary) l c h / 0.25);
+    color: var(--foreground);
+  }
+
+  /* Scrollbar styling for webkit browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--muted);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) var(--muted);
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+@layer utilities {
+  /* Font utilities */
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  /* Text utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Letter spacing */
+  .tracking-luxury {
+    letter-spacing: 0.25em;
+  }
+
+  .tracking-elegant {
+    letter-spacing: 0.15em;
+  }
+
+  .tracking-refined {
+    letter-spacing: 0.08em;
+  }
+
+  /* Gold gradient text - works in both modes */
+  .text-gradient-gold {
+    background: linear-gradient(
+      135deg,
+      oklch(0.78 0.1 75),
+      oklch(0.68 0.12 65),
+      oklch(0.58 0.12 55)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Light mode specific gold gradient */
+  :root .text-gradient-gold {
+    background: linear-gradient(
+      135deg,
+      oklch(0.55 0.12 50),
+      oklch(0.45 0.14 45),
+      oklch(0.4 0.12 40)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Grain texture overlay */
+  .grain-overlay {
+    position: relative;
+  }
+
+  .grain-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Lighter grain for dark mode */
+  .dark .grain-overlay::after {
+    opacity: 0.03;
+  }
+
+  /* Subtle shadow utilities */
+  .shadow-elegant {
+    box-shadow: 0 1px 2px oklch(0 0 0 / 0.04),
+      0 4px 8px oklch(0 0 0 / 0.04),
+      0 8px 16px oklch(0 0 0 / 0.02);
+  }
+
+  .dark .shadow-elegant {
+    box-shadow: 0 1px 2px oklch(0 0 0 / 0.2),
+      0 4px 8px oklch(0 0 0 / 0.15),
+      0 8px 16px oklch(0 0 0 / 0.1);
+  }
+
+  /* Gold glow effect */
+  .glow-gold {
+    box-shadow: 0 0 20px
+      oklch(from var(--primary) l c h / 0.15);
+  }
+
+  .dark .glow-gold {
+    box-shadow: 0 0 30px
+      oklch(from var(--primary) l c h / 0.2);
+  }
+
+  /* Divider gradient */
+  .divider-gradient {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--border) 20%,
+      var(--primary) 50%,
+      var(--border) 80%,
+      transparent
+    );
+  }
+
+  /* Overlay gradients */
+  .overlay-gradient-dark {
+    background: linear-gradient(
+      to bottom,
+      oklch(0 0 0 / 0.6),
+      oklch(0 0 0 / 0.4) 50%,
+      oklch(0 0 0 / 0.7)
+    );
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px
+        oklch(from var(--primary) l c h / 0.1),
+      0 8px 24px oklch(0 0 0 / 0.08);
+  }
+
+  .dark .card-hover:hover {
+    box-shadow: 0 4px 12px
+        oklch(from var(--primary) l c h / 0.15),
+      0 8px 24px oklch(0 0 0 / 0.3);
+  }
+
+  /* Smooth border animation */
+  .border-animate {
+    position: relative;
+  }
+
+  .border-animate::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--primary);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .border-animate:hover::after {
+    opacity: 0.5;
+  }
+}
+
+/* ============================================
+   COMPONENT-SPECIFIC OVERRIDES
+   ============================================ */
+@layer components {
+  /* Light mode specific adjustments for better contrast */
+  :root {
+    /* Form inputs in light mode */
+    & input,
+    & textarea,
+    & select {
+      background-color: oklch(0.99 0.004 85);
+    }
+
+    & input:focus,
+    & textarea:focus,
+    & select:focus {
+      background-color: oklch(1 0 0);
+    }
+  }
+
+  /* Button styles for light mode */
+  :root .btn-primary {
+    background: linear-gradient(
+      135deg,
+      oklch(0.48 0.12 45),
+      oklch(0.42 0.14 40)
+    );
+  }
+
+  :root .btn-primary:hover {
+    background: linear-gradient(
+      135deg,
+      oklch(0.44 0.13 43),
+      oklch(0.38 0.15 38)
+    );
+  }
+
+  /* Dark mode button styles */
+  .dark .btn-primary {
+    background: linear-gradient(
+      135deg,
+      oklch(0.75 0.11 75),
+      oklch(0.68 0.12 70)
+    );
+  }
+
+  .dark .btn-primary:hover {
+    background: linear-gradient(
+      135deg,
+      oklch(0.78 0.1 77),
+      oklch(0.72 0.11 72)
+    );
+  }
+
+  /* Hero section overlay adjustments */
+  :root .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      oklch(0.985 0.006 85 / 0.3),
+      oklch(0.985 0.006 85 / 0.7) 40%,
+      oklch(0.985 0.006 85 / 0.95)
+    );
+  }
+
+  .dark .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      oklch(0.14 0.012 280 / 0.4),
+      oklch(0.14 0.012 280 / 0.7) 40%,
+      oklch(0.14 0.012 280 / 0.95)
+    );
+  }
+}
+
+/* ============================================
+   ANIMATION KEYFRAMES
+   ============================================ */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-gold {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0
+      oklch(from var(--primary) l c h / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px
+      oklch(from var(--primary) l c h / 0);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 2s infinite;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
